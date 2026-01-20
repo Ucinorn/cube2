@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cube2</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div id="app" x-data="game()">
+      <!-- Save/Load buttons in top right -->
+      <div class="save-load-controls">
+        <button class="icon-button" @click="saveGame()" title="Save">
+          <i class="bi bi-floppy"></i>
+        </button>
+        <button class="icon-button" @click="loadGame()" title="Load">
+          <i class="bi bi-upload"></i>
+        </button>
+      </div>
+
+      <!-- Main game area with cube -->
+      <main class="game-area" @click="clickCube()">
+        <div class="cube-container" :style="cubeContainerStyle">
+          <div class="cube-scene" :style="cubeSceneStyle">
+            <template x-for="(cube, index) in placedCubes" :key="index">
+              <div 
+                class="cube-unit" 
+                :style="getCubeStyle(index)"
+                :class="{ 'cube-visible': cube.visible }"
+              >
+                <i class="bi bi-box"></i>
+              </div>
+            </template>
+          </div>
+        </div>
+      </main>
+
+      <!-- Cube icon and count in bottom left -->
+      <div class="cube-counter">
+        <i class="bi bi-box cube-icon"></i>
+        <span class="cube-count" x-text="formatNumber(cubes)"></span>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

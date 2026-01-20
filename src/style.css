@@ -1,0 +1,188 @@
+:root {
+  --cream: #f5f1e8;
+  --gray: #8b8b8b;
+  --white: #ffffff;
+  --gray-dark: #6b6b6b;
+  --gray-light: #d4d4d4;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: var(--cream);
+  color: var(--gray-dark);
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Save/Load buttons in top right */
+.save-load-controls {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 12px;
+  z-index: 100;
+}
+
+.icon-button {
+  width: 40px;
+  height: 40px;
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gray-dark);
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.icon-button:hover {
+  background: var(--gray-light);
+  border-color: var(--gray);
+}
+
+.icon-button:active {
+  transform: scale(0.95);
+}
+
+.icon-button i {
+  font-size: 20px;
+  display: block;
+}
+
+/* Main game area */
+.game-area {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.cube-container {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  perspective: 1500px;
+  perspective-origin: center center;
+  cursor: pointer;
+}
+
+.cube-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+}
+
+.cube-unit {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  transform-style: preserve-3d;
+  margin-left: -15px;
+  margin-top: -15px;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity, transform;
+}
+
+.cube-unit.cube-visible {
+  opacity: 1;
+}
+
+.cube-unit i {
+  display: block;
+  font-size: 30px;
+  color: var(--gray-dark);
+  line-height: 1;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.1));
+}
+
+/* Cube counter in bottom left */
+.cube-counter {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 100;
+  background: var(--white);
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--gray-light);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.cube-icon {
+  color: var(--gray-dark);
+  flex-shrink: 0;
+  font-size: 24px;
+}
+
+.cube-count {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--gray-dark);
+  font-variant-numeric: tabular-nums;
+  min-width: 60px;
+  text-align: right;
+}
+
+@media (max-width: 768px) {
+  .save-load-controls {
+    top: 12px;
+    right: 12px;
+    gap: 8px;
+  }
+
+  .icon-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .icon-button i {
+    font-size: 18px;
+  }
+
+  .cube-counter {
+    bottom: 12px;
+    left: 12px;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+
+  .cube-icon {
+    font-size: 20px;
+  }
+
+  .cube-count {
+    font-size: 1rem;
+  }
+}
